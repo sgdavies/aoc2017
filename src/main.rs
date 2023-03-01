@@ -1,5 +1,5 @@
-mod utils;
 mod day03;
+mod utils;
 
 fn main() {
     println!("Hello, world!");
