@@ -1,6 +1,7 @@
 use std::{collections::HashSet, env};
 mod day03;
 mod day04;
+mod day05;
 mod utils;
 
 fn main() {
@@ -11,5 +12,8 @@ fn main() {
     }
     if args.contains("4") {
         day04::solve();
+    }
+    if args.contains("5") {
+        day05::solve();
     }
 }
