@@ -1,7 +1,15 @@
+use std::{collections::HashSet, env};
 mod day03;
+mod day04;
 mod utils;
 
 fn main() {
+    let args: HashSet<String> = env::args().collect();
     println!("Hello, world!");
-    day03::solve();
+    if args.contains("3") {
+        day03::solve();
+    }
+    if args.contains("4") {
+        day04::solve();
+    }
 }
