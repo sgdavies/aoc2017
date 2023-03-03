@@ -91,7 +91,7 @@ pub fn solve() {
         .pop()
         .expect("No parent?");
     println!("{}", root);
-    
+
     let part_two = discs.get(root).expect("No root").find_unbalanced(&discs);
     match part_two {
         Two::Balanced(_) => assert!(false, "Tower is balanced - no answer"),
