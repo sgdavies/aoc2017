@@ -1,4 +1,4 @@
-use std::{u128, collections::HashSet};
+use std::{collections::HashSet, u128};
 
 pub fn solve() {
     let key = "jzgqcdpd"; // Example: "flqrgnkx", Actual: "jzgqcdpd"
@@ -10,14 +10,19 @@ pub fn solve() {
 
     // part two
     let grid: HashSet<(i32, i32)> = (0..128u32)
-    .into_iter()
-    .map(|x| (x, hash2hashset(&super::day10::knot_hash(&format!("{}-{}", key, x)))))
-    .fold(HashSet::new(), |acc, val| {
-        let pairs = val.1.iter().map(|c| (val.0 as i32, *c as i32));
-        let mut new_acc = acc.clone();
-        new_acc.extend(pairs);
-        new_acc
-    });
+        .into_iter()
+        .map(|x| {
+            (
+                x,
+                hash2hashset(&super::day10::knot_hash(&format!("{}-{}", key, x))),
+            )
+        })
+        .fold(HashSet::new(), |acc, val| {
+            let pairs = val.1.iter().map(|c| (val.0 as i32, *c as i32));
+            let mut new_acc = acc.clone();
+            new_acc.extend(pairs);
+            new_acc
+        });
 
     let mut checked = HashSet::<(i32, i32)>::new();
     let mut regions = 0;
@@ -48,9 +53,12 @@ fn count_bits(hash: &str) -> u32 {
 
 fn hash2hashset(hash: &str) -> HashSet<u32> {
     let val: u128 = u128::from_str_radix(hash, 16).unwrap();
-    (0..128u32).filter(|b| (val & 1<<b) > 0).collect()
+    (0..128u32).filter(|b| (val & 1 << b) > 0).collect()
 }
 
 fn adjacent(row: i32, col: i32) -> Vec<(i32, i32)> {
-    vec![(-1,0), (1,0), (0,-1), (0,1)].iter().map(|(dx, dy)| (row + dx, col + dy)).collect()
+    vec![(-1, 0), (1, 0), (0, -1), (0, 1)]
+        .iter()
+        .map(|(dx, dy)| (row + dx, col + dy))
+        .collect()
 }
