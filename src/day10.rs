@@ -8,7 +8,7 @@ pub fn solve() {
     println!("{}", part_one(256, &input));
     println!(
         "{}",
-        part_two("106,16,254,226,55,2,1,166,177,247,93,0,255,228,60,36")
+        knot_hash("106,16,254,226,55,2,1,166,177,247,93,0,255,228,60,36")
     );
 }
 
@@ -24,7 +24,7 @@ fn part_one(size: u16, input: &Vec<u8>) -> u16 {
     }
 }
 
-fn part_two(input: &str) -> String {
+pub fn knot_hash(input: &str) -> String {
     let mut input: Vec<u8> = input.chars().into_iter().map(|c| c as u8).collect();
     input.extend_from_slice(&vec![17, 31, 73, 47, 23]);
 
@@ -93,8 +93,8 @@ fn knot(start: usize, skip: usize, input: &Vec<u8>, v: &Vec<u16>) -> (usize, usi
 
 #[cfg(test)]
 mod tests {
+    use super::knot_hash;
     use super::part_one;
-    use super::part_two;
 
     #[test]
     fn test_one() {
@@ -103,11 +103,11 @@ mod tests {
 
     #[test]
     fn test_two() {
-        let t1 = part_two("");
+        let t1 = knot_hash("");
         println!("{}", t1);
         assert!(t1 == "a2582a3a0e66e6e86e3812dcb672a272");
-        assert!(part_two("AoC 2017") == "33efeb34ea91902bb2f59c9920caa6cd");
-        assert!(part_two("1,2,3") == "3efbe78a8d82f29979031a4aa0b16a9d");
-        assert!(part_two("1,2,4") == "63960835bcdc130f0b66d7ff4f6a5a8e");
+        assert!(knot_hash("AoC 2017") == "33efeb34ea91902bb2f59c9920caa6cd");
+        assert!(knot_hash("1,2,3") == "3efbe78a8d82f29979031a4aa0b16a9d");
+        assert!(knot_hash("1,2,4") == "63960835bcdc130f0b66d7ff4f6a5a8e");
     }
 }
