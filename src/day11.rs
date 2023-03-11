@@ -37,20 +37,20 @@ fn count_steps(path: &str) -> (u32, u32) {
             "ne" => {
                 x += 1;
                 y += 1;
-            },
+            }
             "se" => {
                 x += 1;
                 y -= 1;
-            },
+            }
             "s" => y -= 2,
             "sw" => {
                 x -= 1;
                 y -= 1;
-            },
+            }
             "nw" => {
                 x -= 1;
                 y += 1;
-            },
+            }
             _ => panic!("Invalid token: {}", token),
         }
 
