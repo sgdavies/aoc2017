@@ -1,3 +1,5 @@
+use crate::utils::p2s;
+
 pub fn solve() {
     let input = include_str!("../16.txt").trim();
     let mut programs = [
@@ -67,14 +69,4 @@ fn dance_once(input: &str, programs: &mut [char; 16]) {
             }
         };
     }
-}
-
-fn p2s(arr: &[char]) -> String {
-    format!(
-        "{}",
-        arr.iter()
-            .map(|c| c.to_string())
-            .collect::<Vec<String>>()
-            .join("")
-    )
 }

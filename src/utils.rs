@@ -12,6 +12,16 @@ pub fn neighbours(x: i32, y: i32) -> Vec<(i32, i32)> {
     v.iter().map(|(dx, dy)| (x + dx, y + dy)).collect()
 }
 
+pub fn p2s(arr: &[char]) -> String {
+    format!(
+        "{}",
+        arr.iter()
+            .map(|c| c.to_string())
+            .collect::<Vec<String>>()
+            .join("")
+    )
+}
+
 #[cfg(test)]
 mod tests {
     #[test]
