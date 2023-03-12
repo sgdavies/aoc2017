@@ -16,6 +16,7 @@ mod day16;
 mod day17;
 mod day18;
 mod day19;
+mod day20;
 mod utils;
 
 fn main() {
@@ -71,5 +72,8 @@ fn main() {
     }
     if args.contains("19") {
         day19::solve();
+    }
+    if args.contains("20") {
+        day20::solve();
     }
 }
