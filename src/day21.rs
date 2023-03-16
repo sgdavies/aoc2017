@@ -1,4 +1,4 @@
-use std::collections::{HashSet, HashMap,};
+use std::collections::{HashMap, HashSet};
 
 // Design thoughts:
 // data - grid
@@ -24,25 +24,30 @@ pub fn solve() {
     let mut grid = ".#./..#/###".to_string();
     let mut size = 3; // Length of each row
     for step in 0..18 {
-        if step==5 {
-            println!("21 part one: {}", grid.chars().into_iter().filter(|c| *c=='#').count());
+        if step == 5 {
+            println!(
+                "21 part one: {}",
+                grid.chars().into_iter().filter(|c| *c == '#').count()
+            );
         }
         // abcd/efgh/ijkl/mnop
         // breakit() => [ab/ef, cd/gh, ij/mn, kl/op]
         // rules => [ABC/DEF/GHI, JKL/MNO/PQR, STU/VWX/YZ1, 234/567/890]
         // reasseble() => ABCJLK,DEFMNO,GHIPQR,STU234,VWX567,YZ1890
-        grid = reassemble(breakit(&grid, size)
-            .iter()
-            .map(|chunk| {
-                if let Some(val) = rules.get(chunk) {
-                    val.to_string()
-                } else {
-                    // println!("{:?}", rules);
-                    panic!("Coulnd't find {} in map", chunk);
-                }
-            })
-            .collect::<Vec<String>>())
-            .join("/");
+        grid = reassemble(
+            breakit(&grid, size)
+                .iter()
+                .map(|chunk| {
+                    if let Some(val) = rules.get(chunk) {
+                        val.to_string()
+                    } else {
+                        // println!("{:?}", rules);
+                        panic!("Coulnd't find {} in map", chunk);
+                    }
+                })
+                .collect::<Vec<String>>(),
+        )
+        .join("/");
         size = if size % 2 == 0 {
             (size / 2) * 3
         } else {
@@ -52,7 +57,10 @@ pub fn solve() {
         // println!("{}\n{}\n", grid, grid.split("/").collect::<Vec<&str>>().join("\n"));
     }
 
-    println!("21 part two: {}", grid.chars().into_iter().filter(|c| *c=='#').count());
+    println!(
+        "21 part two: {}",
+        grid.chars().into_iter().filter(|c| *c == '#').count()
+    );
 }
 
 fn get_rules(input: &str) -> HashMap<String, String> {
@@ -70,7 +78,6 @@ fn get_rules(input: &str) -> HashMap<String, String> {
 
 fn all_orientations(chunk: &str) -> HashSet<String> {
     let mut ors = HashSet::<String>::new();
-    // let mut dbg = Vec::<String>::new();
     // Turn into an array
     // Add all rotations
     // Flip, then add all rotations again
@@ -107,13 +114,20 @@ fn all_orientations(chunk: &str) -> HashSet<String> {
             }
 
             for grid in grids {
-                ors.insert(grid.into_iter().map(|ca| {
-                    let mut s = "".to_string();
-                    for c in ca { s.push(c); }
-                    s
-                }).collect::<Vec<String>>().join("/"));
+                ors.insert(
+                    grid.into_iter()
+                        .map(|ca| {
+                            let mut s = "".to_string();
+                            for c in ca {
+                                s.push(c);
+                            }
+                            s
+                        })
+                        .collect::<Vec<String>>()
+                        .join("/"),
+                );
             }
-        },
+        }
         11 => {
             // 3x3
             let rows: Vec<Vec<char>> = chunk.split('/').map(|s| s.chars().collect()).collect();
@@ -130,33 +144,43 @@ fn all_orientations(chunk: &str) -> HashSet<String> {
                 // 10 11 12 => 01 11 21
                 // 20 21 22    00 10 20
                 grids.push(grid);
-                let new_grid = [[grid[0][2], grid[1][2], grid[2][2]],
-                [grid[0][1], grid[1][1], grid[2][1]],
-                [grid[0][0], grid[1][0], grid[2][0]]];
+                let new_grid = [
+                    [grid[0][2], grid[1][2], grid[2][2]],
+                    [grid[0][1], grid[1][1], grid[2][1]],
+                    [grid[0][0], grid[1][0], grid[2][0]],
+                ];
                 grid = new_grid;
             }
             grid.reverse();
             for _ in 0..4 {
                 grids.push(grid);
-                let new_grid = [[grid[0][2], grid[1][2], grid[2][2]],
-                [grid[0][1], grid[1][1], grid[2][1]],
-                [grid[0][0], grid[1][0], grid[2][0]]];
+                let new_grid = [
+                    [grid[0][2], grid[1][2], grid[2][2]],
+                    [grid[0][1], grid[1][1], grid[2][1]],
+                    [grid[0][0], grid[1][0], grid[2][0]],
+                ];
                 grid = new_grid;
             }
 
             for grid in grids {
-                let val = grid.into_iter().map(|ca| {
-                    let mut s = "".to_string();
-                    for c in ca { s.push(c); }
-                    s
-                }).collect::<Vec<String>>().join("/");
-                // dbg.push(val.clone());
+                let val = grid
+                    .into_iter()
+                    .map(|ca| {
+                        let mut s = "".to_string();
+                        for c in ca {
+                            s.push(c);
+                        }
+                        s
+                    })
+                    .collect::<Vec<String>>()
+                    .join("/");
                 ors.insert(val);
             }
-        },
-        _x => { panic!("Invalid length {} {}", _x, chunk); }
+        }
+        _x => {
+            panic!("Invalid length {} {}", _x, chunk);
+        }
     }
-    // println!("{:?}", dbg);
     ors
 }
 
@@ -172,17 +196,19 @@ fn breakit(grid: &str, size: usize) -> Vec<String> {
     let chunk_size = if size % 2 == 0 { 2 } else { 3 };
     let n_chunks = size / chunk_size;
     let mut chunks = Vec::<String>::new();
-    for row in 0..n_chunks { 
+    for row in 0..n_chunks {
         for chunk in 0..n_chunks {
             let mut new_chunk = Vec::<String>::new();
             for i in 0..chunk_size {
                 let mut cs = String::new();
                 for j in 0..chunk_size {
-                    cs.push(*rows
-                        .get(row*chunk_size + i)
-                        .unwrap()
-                        .get(chunk*chunk_size + j)
-                        .unwrap());
+                    cs.push(
+                        *rows
+                            .get(row * chunk_size + i)
+                            .unwrap()
+                            .get(chunk * chunk_size + j)
+                            .unwrap(),
+                    );
                 }
                 new_chunk.push(cs);
             }
@@ -214,7 +240,7 @@ fn reassemble(chunks: Vec<String>) -> Vec<String> {
         for fragment_id in 0..chunk_len {
             let mut s = String::new();
             for j in 0..nrows {
-                s.push_str(chunks.get(i*nrows + j).unwrap().get(fragment_id).unwrap());
+                s.push_str(chunks.get(i * nrows + j).unwrap().get(fragment_id).unwrap());
             }
             out.push(s);
         }
@@ -224,8 +250,10 @@ fn reassemble(chunks: Vec<String>) -> Vec<String> {
 }
 
 fn int_sqrt(x: usize) -> usize {
-    for i in 1..x+1 {
-        if i*i == x { return i }
+    for i in 1..x + 1 {
+        if i * i == x {
+            return i;
+        }
     }
     panic!("You didn't give me a square number: {}", x);
 }
@@ -235,7 +263,10 @@ mod tests {
     #[test]
     fn test_ors() {
         let set = super::all_orientations(".#./..#/###");
-        println!("{:?}", set.iter().collect::<std::collections::BTreeSet<&String>>());
+        println!(
+            "{:?}",
+            set.iter().collect::<std::collections::BTreeSet<&String>>()
+        );
         assert_eq!(8, set.len());
     }
 }
