@@ -17,28 +17,25 @@ pub fn solve() {
                 hash2hashset(&super::day10::knot_hash(&format!("{}-{}", key, x))),
             )
         })
-        .fold(HashSet::new(), |acc, val| {
+        .fold(HashSet::new(), |mut acc, val| {
             let pairs = val.1.iter().map(|c| (val.0 as i32, *c as i32));
-            let mut new_acc = acc.clone();
-            new_acc.extend(pairs);
-            new_acc
+            acc.extend(pairs);
+            acc
         });
 
     let mut checked = HashSet::<(i32, i32)>::new();
     let mut regions = 0;
     for row in 0..128i32 {
         for col in 0..128i32 {
-            if !checked.contains(&(row, col)) {
-                if grid.contains(&(row, col)) {
-                    regions += 1;
-                    checked.insert((row, col));
-                    let mut region = adjacent(row, col);
-                    while region.len() > 0 {
-                        let candidate = region.pop().unwrap();
-                        if grid.contains(&candidate) && !checked.contains(&candidate) {
-                            checked.insert(candidate);
-                            region.extend(adjacent(candidate.0, candidate.1));
-                        }
+            if !checked.contains(&(row, col)) && grid.contains(&(row, col)) {
+                regions += 1;
+                checked.insert((row, col));
+                let mut region = adjacent(row, col);
+                while !region.is_empty() {
+                    let candidate = region.pop().unwrap();
+                    if grid.contains(&candidate) && !checked.contains(&candidate) {
+                        checked.insert(candidate);
+                        region.extend(adjacent(candidate.0, candidate.1));
                     }
                 }
             }

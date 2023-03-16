@@ -37,9 +37,9 @@ impl<'a> Cpu<'a> {
         let mut registers = HashMap::<&str, i64>::new();
         registers.insert("p", id as i64);
         Cpu {
-            program: program,
+            program,
             ip: 0,
-            registers: registers,
+            registers,
             queue: VecDeque::new(),
             send_count: 0,
         }
@@ -71,18 +71,16 @@ impl<'a> Cpu<'a> {
                     }
                 }
                 "rcv" => {
-                    if let Some(_) = other_cpu {
+                    if other_cpu.is_some() {
                         if let Some(val) = self.queue.pop_front() {
                             self.registers.insert(reg, val);
                         } else {
                             // ip unchanged, so we'll come back here when re-run
                             return;
                         }
-                    } else {
-                        if get_val(reg, &self.registers) > 0 {
-                            println!("18 part one: {}", sounds.pop().unwrap());
-                            return;
-                        }
+                    } else if get_val(reg, &self.registers) > 0 {
+                        println!("18 part one: {}", sounds.pop().unwrap());
+                        return;
                     }
                 }
                 _ => {

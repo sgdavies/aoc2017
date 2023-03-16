@@ -13,13 +13,10 @@ pub fn neighbours(x: i32, y: i32) -> Vec<(i32, i32)> {
 }
 
 pub fn p2s(arr: &[char]) -> String {
-    format!(
-        "{}",
-        arr.iter()
-            .map(|c| c.to_string())
-            .collect::<Vec<String>>()
-            .join("")
-    )
+    arr.iter()
+        .map(|c| c.to_string())
+        .collect::<Vec<String>>()
+        .join("")
 }
 
 #[cfg(test)]

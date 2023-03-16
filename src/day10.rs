@@ -12,7 +12,7 @@ pub fn solve() {
     );
 }
 
-fn part_one(size: u16, input: &Vec<u8>) -> u16 {
+fn part_one(size: u16, input: &[u8]) -> u16 {
     let v: Vec<u16> = (0..size).collect();
     let (start, _skip, v) = knot(0, 0, input, &v);
 
@@ -26,7 +26,7 @@ fn part_one(size: u16, input: &Vec<u8>) -> u16 {
 
 pub fn knot_hash(input: &str) -> String {
     let mut input: Vec<u8> = input.chars().into_iter().map(|c| c as u8).collect();
-    input.extend_from_slice(&vec![17, 31, 73, 47, 23]);
+    input.extend_from_slice(&[17, 31, 73, 47, 23]);
 
     let mut start = 0;
     let mut skip = 0;
@@ -52,10 +52,10 @@ pub fn knot_hash(input: &str) -> String {
         .join("")
 }
 
-fn s2d(v: &Vec<u16>) -> Vec<u8> {
+fn s2d(v: &[u16]) -> Vec<u8> {
     let mut out = Vec::<u8>::new();
-    let mut v = VecDeque::<u16>::from(v.clone());
-    while v.len() > 0 {
+    let mut v = VecDeque::<u16>::from(v.to_owned());
+    while !v.is_empty() {
         let mut next = 0u8;
         for _ in 0..16 {
             next ^= v.pop_front().unwrap() as u8;
@@ -66,10 +66,10 @@ fn s2d(v: &Vec<u16>) -> Vec<u8> {
     out
 }
 
-fn knot(start: usize, skip: usize, input: &Vec<u8>, v: &Vec<u16>) -> (usize, usize, Vec<u16>) {
+fn knot(start: usize, skip: usize, input: &[u8], v: &[u16]) -> (usize, usize, Vec<u16>) {
     let mut start = start;
     let mut skip = skip;
-    let mut v = v.clone();
+    let mut v = v.to_owned();
 
     for l in input {
         // println!("{},{},{} - {:?}", start, skip, l, v);

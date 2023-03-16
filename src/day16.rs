@@ -31,7 +31,7 @@ pub fn solve() {
 }
 
 fn dance_once(input: &str, programs: &mut [char; 16]) {
-    for line in input.clone().split(',') {
+    for line in input.to_string().split(',') {
         let mut chars = line.chars();
         match chars.next().unwrap() {
             's' => {
@@ -63,9 +63,7 @@ fn dance_once(input: &str, programs: &mut [char; 16]) {
                     ),
                     _c => panic!("Unexpected char: {}", _c),
                 };
-                let tmp = programs[a];
-                programs[a] = programs[b];
-                programs[b] = tmp;
+                programs.swap(a, b);
             }
         };
     }

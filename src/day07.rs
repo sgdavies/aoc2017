@@ -22,7 +22,7 @@ impl Disc {
                     Two::Unbalanced(answer) => return Two::Unbalanced(answer),
                 }
             }
-            sizes.sort();
+            sizes.sort_unstable();
             if sizes[0].0 != sizes.last().unwrap().0 {
                 // Unbalanced! Which is the odd one out?
                 // println!("{:?}", sizes);
@@ -65,7 +65,7 @@ pub fn solve() {
                 .replace(")", "")
                 .parse()
                 .expect("Couldn't parse size");
-            let children: Option<Vec<String>> = if words.len() > 0 {
+            let children: Option<Vec<String>> = if !words.is_empty() {
                 words.pop_front(); // ->
                 let childs: Vec<String> = words.into_iter().map(|w| w.replace(",", "")).collect();
                 kids.extend(childs.iter().map(|c| c.to_owned()));
@@ -77,8 +77,8 @@ pub fn solve() {
                 name.to_string(),
                 Disc {
                     _name: name.to_string(),
-                    size: size,
-                    children: children,
+                    size,
+                    children,
                 },
             )
         })
@@ -94,7 +94,7 @@ pub fn solve() {
 
     let part_two = discs.get(root).expect("No root").find_unbalanced(&discs);
     match part_two {
-        Two::Balanced(_) => assert!(false, "Tower is balanced - no answer"),
+        Two::Balanced(_) => panic!("Tower is balanced - no answer"),
         Two::Unbalanced(ans) => println!("{}", ans),
     };
 }

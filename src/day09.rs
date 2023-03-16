@@ -17,27 +17,23 @@ fn score(input: &str) -> (u32, u32) {
     for c in input.chars() {
         if skip_next {
             skip_next = false;
-        } else {
-            if garbage {
-                if c == '!' {
-                    skip_next = true
-                } else if c == '>' {
-                    garbage = false;
-                } else {
-                    part_two += 1;
-                }
+        } else if garbage {
+            if c == '!' {
+                skip_next = true
+            } else if c == '>' {
+                garbage = false;
             } else {
-                if c == '!' {
-                    skip_next = true;
-                } else if c == '<' {
-                    garbage = true;
-                } else if c == '{' {
-                    part_one += depth;
-                    depth += 1;
-                } else if c == '}' {
-                    depth -= 1;
-                }
+                part_two += 1;
             }
+        } else if c == '!' {
+            skip_next = true;
+        } else if c == '<' {
+            garbage = true;
+        } else if c == '{' {
+            part_one += depth;
+            depth += 1;
+        } else if c == '}' {
+            depth -= 1;
         }
     }
     (part_one, part_two)

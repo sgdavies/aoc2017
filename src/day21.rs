@@ -190,7 +190,7 @@ fn breakit(grid: &str, size: usize) -> Vec<String> {
     // or abcdef/ghijkl/mnopqr/stuvwx/yzABCD/EFGHIJ - 3 chunks of size 2
     // => [ab/gh, cd/ij, ef/kl, mn/st, op/uv, qr/wx, yz/EF, AB/GH, CD/IJ]
     // size should always equal the length of each row, and the number of rows
-    let rows: Vec<Vec<char>> = grid.split("/").map(|s| s.chars().collect()).collect();
+    let rows: Vec<Vec<char>> = grid.split('/').map(|s| s.chars().collect()).collect();
     assert_eq!(size, rows.len());
     assert_eq!(size, rows.get(0).unwrap().len());
     let chunk_size = if size % 2 == 0 { 2 } else { 3 };
@@ -230,7 +230,7 @@ fn reassemble(chunks: Vec<String>) -> Vec<String> {
     //      YZ1     890
     // or In: [abc/././., def/././., ghi/././., JLK/././., MNO/././., PQR/././., s///, t///, u///]
     // => [abcdefghi, ..., ..., JLKMNOPQR, ..., ..., ssstttuuu, ..., ...]
-    let chunks: Vec<Vec<&str>> = chunks.iter().map(|s| s.split("/").collect()).collect();
+    let chunks: Vec<Vec<&str>> = chunks.iter().map(|s| s.split('/').collect()).collect();
     let chunk_len = chunks.get(0).unwrap().get(0).unwrap().len();
     assert_eq!(chunk_len, chunks.get(0).unwrap().len());
     let mut out = Vec::<String>::new();

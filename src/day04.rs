@@ -3,7 +3,6 @@ use std::{collections::HashSet, fs};
 pub fn solve() {
     let input = fs::read_to_string(&"04.txt").expect("Can't read 04.txt");
     let one = input
-        .clone()
         .trim_end()
         .split('\n')
         .filter(|s| {
@@ -15,7 +14,6 @@ pub fn solve() {
         .count();
     println!("{}", one);
     let two = input
-        .clone()
         .trim_end()
         .split('\n')
         .filter(|s| {
@@ -23,7 +21,7 @@ pub fn solve() {
                 .split(' ')
                 .map(|word| -> Vec<char> {
                     let mut sword = word.chars().collect::<Vec<char>>();
-                    sword.sort();
+                    sword.sort_unstable();
                     sword
                 })
                 .collect();

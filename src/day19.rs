@@ -29,10 +29,10 @@ fn step(pos: (i32, i32), direction: &Direction) -> (i32, i32) {
 pub fn solve() {
     let input = include_str!("../19.txt").trim_end();
     let mut grid = HashMap::<(i32, i32), Tile>::new();
-    let mut row = 0;
-    for line in input.split('\n') {
-        let mut col = 0;
-        for c in line.chars() {
+    for (row, line) in input.split('\n').enumerate() {
+        let row: i32 = row.try_into().unwrap();
+        for (col, c) in line.chars().enumerate() {
+            let col: i32 = col.try_into().unwrap();
             match c {
                 ' ' => {}
                 '|' => {
@@ -48,9 +48,7 @@ pub fn solve() {
                     grid.insert((row, col), Tile::Letter(letter));
                 }
             }
-            col += 1;
         }
-        row += 1;
     }
 
     let grid = grid; // No longer mut

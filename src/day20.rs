@@ -9,7 +9,7 @@ pub fn solve() {
             let mut words = line.split("a=<");
             words.next();
             let accel = words.next().unwrap();
-            let accel = accel.trim_end_matches(">");
+            let accel = accel.trim_end_matches('>');
             accel
                 .split(',')
                 .fold(0, |acc, num| acc + num.parse::<i32>().unwrap().abs())
