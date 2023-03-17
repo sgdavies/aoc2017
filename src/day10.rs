@@ -98,7 +98,7 @@ mod tests {
 
     #[test]
     fn test_one() {
-        assert!(part_one(5, &vec![3u8, 4, 1, 5]) == 12);
+        assert!(part_one(5, &[3u8, 4, 1, 5]) == 12);
     }
 
     #[test]

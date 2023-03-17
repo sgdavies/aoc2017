@@ -76,9 +76,9 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        assert_eq!(count_steps(&"ne,ne,ne").0, 3);
-        assert_eq!(count_steps(&"ne,ne,sw,sw").0, 0);
-        assert_eq!(count_steps(&"ne,ne,s,s").0, 2);
-        assert_eq!(count_steps(&"se,sw,se,sw,sw").0, 3);
+        assert_eq!(count_steps("ne,ne,ne").0, 3);
+        assert_eq!(count_steps("ne,ne,sw,sw").0, 0);
+        assert_eq!(count_steps("ne,ne,s,s").0, 2);
+        assert_eq!(count_steps("se,sw,se,sw,sw").0, 3);
     }
 }

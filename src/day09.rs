@@ -45,13 +45,13 @@ mod tests {
 
     #[test]
     fn examples() {
-        assert_eq!(score(&"{}").0, 1);
-        assert_eq!(score(&"{{{}}}").0, 6);
-        assert_eq!(score(&"{{},{}}").0, 5);
-        assert_eq!(score(&"{{{},{},{{}}}}").0, 16);
-        assert_eq!(score(&"{<a>,<a>,<a>,<a>}").0, 1);
-        assert_eq!(score(&"{{<ab>},{<ab>},{<ab>},{<ab>}}").0, 9);
-        assert_eq!(score(&"{{<!!>},{<!!>},{<!!>},{<!!>}}").0, 9);
-        assert_eq!(score(&"{{<a!>},{<a!>},{<a!>},{<ab>}}").0, 3);
+        assert_eq!(score("{}").0, 1);
+        assert_eq!(score("{{{}}}").0, 6);
+        assert_eq!(score("{{},{}}").0, 5);
+        assert_eq!(score("{{{},{},{{}}}}").0, 16);
+        assert_eq!(score("{<a>,<a>,<a>,<a>}").0, 1);
+        assert_eq!(score("{{<ab>},{<ab>},{<ab>},{<ab>}}").0, 9);
+        assert_eq!(score("{{<!!>},{<!!>},{<!!>},{<!!>}}").0, 9);
+        assert_eq!(score("{{<a!>},{<a!>},{<a!>},{<ab>}}").0, 3);
     }
 }

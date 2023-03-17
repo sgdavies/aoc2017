@@ -53,7 +53,7 @@ fn run<'a>(
         let mut words = lines.get(ip).unwrap().split_whitespace();
         let op = words.next().unwrap();
         let x = words.next().unwrap(); // May be a register or a value
-        let y = value(words.next().unwrap(), &registers);
+        let y = value(words.next().unwrap(), registers);
 
         match op {
             "set" => {
@@ -69,7 +69,7 @@ fn run<'a>(
                 registers.insert(x, x_val * y);
             }
             "jnz" => {
-                if value(x, &registers) != 0 {
+                if value(x, registers) != 0 {
                     ip = (ip as i64 + y).try_into().unwrap();
                     ip -= 1;
                 }
