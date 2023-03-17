@@ -1,0 +1,32 @@
+set b 99
+set c b
+jnz a 2
+jnz 1 5
+mul b 100 // 9_900
+sub b -100000 // 109_900 - increases by 17 on line 31
+set c b
+sub c -17000 // 126_900 -- fixed forever
+set f 1
+set d 2
+set e 2
+set g d // g=d
+mul g e // g = e*d
+sub g b // g = e*d -b
+jnz g 2
+set f 0 // only set if e*d == b
+sub e -1
+set g e
+sub g b
+jnz g -8 // line 12 set g d // loop from e=2 to e=b
+sub d -1
+set g d
+sub g b
+jnz g -13 // line 11 set e 2 // loop from d=2 to d=b
+jnz f 2   // f is set to 0 during the double loop if _ever_ e*d = b - ie b is _not_ prime
+sub h -1    
+set g b
+sub g c
+jnz g 2 // so stop when b=c
+jnz 1 3
+sub b -17
+jnz 1 -23 // line 9 set f 1
