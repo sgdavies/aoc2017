@@ -26,7 +26,7 @@ pub fn solve() {
     for step in 0..18 {
         if step == 5 {
             println!(
-                "21 part one: {}",
+                "21 part one {}",
                 grid.chars().into_iter().filter(|c| *c == '#').count()
             );
         }
@@ -58,7 +58,7 @@ pub fn solve() {
     }
 
     println!(
-        "21 part two: {}",
+        "21 part two {}",
         grid.chars().into_iter().filter(|c| *c == '#').count()
     );
 }

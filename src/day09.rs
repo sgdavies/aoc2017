@@ -4,8 +4,8 @@ pub fn solve() {
     let input = fs::read_to_string(&"09.txt").expect("Can't read 09.txt");
 
     let ans = score(&input);
-    println!("{}", ans.0);
-    println!("{}", ans.1);
+    println!("09 part one {}", ans.0);
+    println!("09 part two {}", ans.1);
 }
 
 fn score(input: &str) -> (u32, u32) {

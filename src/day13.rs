@@ -23,10 +23,10 @@ pub fn solve() {
             (acc.0 | c, acc.1 + s)
         });
         if delay == 0 {
-            println!("13 Part one: {}", severity);
+            println!("13 part one {}", severity);
         }
         if !caught {
-            println!("13 Part two: {}", delay);
+            println!("13 part two {}", delay);
             break;
         }
         delay += 1;

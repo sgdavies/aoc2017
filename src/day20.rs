@@ -25,7 +25,7 @@ pub fn solve() {
             closest = particle_id;
         }
     }
-    println!("20 part one: {}", closest);
+    println!("20 part one {}", closest);
 
     // part two - have to simulate it properly!
     let mut particles: Vec<Particle> = input
@@ -83,7 +83,7 @@ pub fn solve() {
     }
 
     println!(
-        "20 part two: {}",
+        "20 part two {}",
         particles.iter().filter(|p| p.alive).count()
     );
 }

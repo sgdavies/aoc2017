@@ -15,7 +15,7 @@ pub fn solve() {
             judge += 1;
         }
     }
-    println!("Day 15 part one: {}", judge);
+    println!("15 part one {}", judge);
 
     a = 591;
     b = 393;
@@ -36,5 +36,5 @@ pub fn solve() {
             judge += 1;
         }
     }
-    println!("Day 15 part two: {}", judge);
+    println!("15 part two {}", judge);
 }

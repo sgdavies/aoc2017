@@ -47,6 +47,6 @@ pub fn solve() {
         }
     }
 
-    println!("{}", registers.values().max().unwrap());
-    println!("{}", max_ever);
+    println!("08 part one {}", registers.values().max().unwrap());
+    println!("08 part two {}", max_ever);
 }

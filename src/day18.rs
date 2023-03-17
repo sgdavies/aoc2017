@@ -21,7 +21,7 @@ pub fn solve() {
         }
     }
 
-    println!("18 part two: {}", cpu1.send_count);
+    println!("18 part two {}", cpu1.send_count);
 }
 
 struct Cpu<'a> {
@@ -79,7 +79,7 @@ impl<'a> Cpu<'a> {
                             return;
                         }
                     } else if get_val(reg, &self.registers) > 0 {
-                        println!("18 part one: {}", sounds.pop().unwrap());
+                        println!("18 part one {}", sounds.pop().unwrap());
                         return;
                     }
                 }

@@ -11,7 +11,7 @@ pub fn solve() {
         iter += 1;
 
         if iter == 1 {
-            println!("16 part one: {}", p2s(&programs));
+            println!("16 part one {}", p2s(&programs));
         }
         if programs
             == [
@@ -27,7 +27,7 @@ pub fn solve() {
         dance_once(input, &mut programs);
     }
 
-    println!("16 part two: {}", p2s(&programs));
+    println!("16 part two {}", p2s(&programs));
 }
 
 fn dance_once(input: &str, programs: &mut [char; 16]) {

@@ -46,6 +46,6 @@ pub fn solve() {
 
     // println!("{:?}", merged_groups);
     // println!("{:?}", parents);
-    println!("Part 1: {}", merged_groups.get(&0).unwrap().len());
-    println!("Part 2: {}", merged_groups.len());
+    println!("12 part one {}", merged_groups.get(&0).unwrap().len());
+    println!("12 part two {}", merged_groups.len());
 }

@@ -6,7 +6,7 @@ pub fn solve() {
         .into_iter()
         .map(|x| count_bits(&super::day10::knot_hash(&format!("{}-{}", key, x))))
         .sum();
-    println!("Day 14 part one: {}", ans);
+    println!("14 part one {}", ans);
 
     // part two
     let grid: HashSet<(i32, i32)> = (0..128u32)
@@ -41,7 +41,7 @@ pub fn solve() {
             }
         }
     }
-    println!("Day 14 part two: {}", regions);
+    println!("14 part two {}", regions);
 }
 
 fn count_bits(hash: &str) -> u32 {

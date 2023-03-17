@@ -12,7 +12,7 @@ pub fn solve() {
             nwords == set.len()
         })
         .count();
-    println!("{}", one);
+    println!("04 part one {}", one);
     let two = input
         .trim_end()
         .split('\n')
@@ -30,5 +30,5 @@ pub fn solve() {
             nwords == set.len()
         })
         .count();
-    println!("{}", two);
+    println!("04 part two {}", two);
 }

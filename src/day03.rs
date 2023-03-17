@@ -13,7 +13,6 @@ pub fn solve() {
     let mut part_one = None;
     let mut part_two = None;
     while part_one.is_none() || part_two.is_none() {
-        // TODO ||
         // Right
         let mut s = 0;
         while s < smax {
@@ -91,8 +90,8 @@ pub fn solve() {
         smax += 1;
     }
 
-    println!("{}", part_one.expect("Didn't get part one answer"));
-    println!("{}", part_two.expect("Didn't get part two answer"));
+    println!("03 part one {}", part_one.expect("Didn't get part one answer"));
+    println!("03 part two {}", part_two.expect("Didn't get part two answer"));
 }
 
 fn check_one(x: i32, y: i32, num: u32) -> Option<u32> {

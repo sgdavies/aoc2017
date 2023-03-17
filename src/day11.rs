@@ -4,8 +4,8 @@ pub fn solve() {
     // Read the input string from the file, trim off the newline and call count_steps to get the result
     let input = include_str!("../11.txt").trim();
     let result = count_steps(input);
-    println!("Day 11, part 1: {}", result.0);
-    println!("Day 11, part 2: {}", result.1);
+    println!("11 part one {}", result.0);
+    println!("11 part two {}", result.1);
 }
 
 fn count_steps(path: &str) -> (u32, u32) {

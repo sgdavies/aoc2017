@@ -27,7 +27,7 @@ pub fn solve() {
             break;
         }
     }
-    println!("{}", steps);
+    println!("05 part one {}", steps);
 
     // Part two
     let mut ins = ins_orig;
@@ -49,5 +49,5 @@ pub fn solve() {
             break;
         }
     }
-    println!("{}", steps);
+    println!("05 part two {}", steps);
 }

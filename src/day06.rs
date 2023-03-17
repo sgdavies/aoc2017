@@ -39,6 +39,6 @@ pub fn solve() {
         seen.insert(blocks.clone());
     }
 
-    println!("{}", part_one.expect("Didn't get part one!?"));
-    println!("{}", steps);
+    println!("06 part one {}", part_one.expect("Didn't get part one!?"));
+    println!("06 part two {}", steps);
 }

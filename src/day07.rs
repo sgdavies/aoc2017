@@ -90,11 +90,11 @@ pub fn solve() {
         .collect::<Vec<&String>>()
         .pop()
         .expect("No parent?");
-    println!("{}", root);
+    println!("07 part one {}", root);
 
     let part_two = discs.get(root).expect("No root").find_unbalanced(&discs);
     match part_two {
         Two::Balanced(_) => panic!("Tower is balanced - no answer"),
-        Two::Unbalanced(ans) => println!("{}", ans),
+        Two::Unbalanced(ans) => println!("07 part two {}", ans),
     };
 }

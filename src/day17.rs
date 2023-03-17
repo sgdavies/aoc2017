@@ -15,7 +15,7 @@ pub fn solve() {
         }
         buff.push_back(x);
     }
-    println!("17 part one: {}", buff.pop_front().unwrap());
+    println!("17 part one {}", buff.pop_front().unwrap());
 
     // part two - 50_000_000 iterations
     // can't keep adding in middle of array (& resizing) -- too slow
@@ -43,5 +43,5 @@ pub fn solve() {
         }
     }
 
-    println!("27 part two: {}", abuff[0]);
+    println!("27 part two {}", abuff[0]);
 }
